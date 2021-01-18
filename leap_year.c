@@ -1,20 +1,22 @@
 #include <stdio.h>
 
+// Given a year, check if that is a leap year or not
+
 typedef enum {false, true} bool;
 
 int main() {
     int year;
-    printf("Inserire l'anno: ");
+    printf("Write the year: ");
     scanf("%d", &year);
     fflush(stdout);
-    // Il modo più efficiente per controllare se un anno è bisestile o meno
-    // Controlla se l'anno è divisibile per 400, se si allora è bisestile
-    // Se no, controlla se l'anno è divisibile per 4 e non per 100
-    // Se si allora è bisestile, altrimenti no
+    // The more efficient way to check if a year is a leap year or not
+    // it checks if the year is divisible by 400, if yes then it is
+    // if not then it checks if the year is divisible by 4 and not by 100
+    // if yes then it's a leap year otherwise not
     bool is_leap = (! (year % 400)) || (! (year % 4) && (year % 100));
 
     if (is_leap) {
-        printf("Si\n");
+        printf("Yes\n");
     }
     else {
         printf("No\n");
