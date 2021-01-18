@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+// Given an array by the user, sort it by increment or decrement order
+
 typedef enum {false, true} bool;
 
 void swap(int *xp, int *yp);
@@ -8,21 +10,21 @@ void print_array(int arr[], int n);
 
 int main() {
     int n;
-    printf("Inserisci N: ");
+    printf("How many numbers? ");
     scanf("%d", &n);
     fflush(stdout);
 
     int nums[n];
     for (int i=0; i<n; i++) {
         int input;
-        printf("Inserire un numero [%d/%d]: ", i, n);
+        printf("Write a number [%d/%d]: ", i, n);
         scanf("%d", &input);
         fflush(stdout);
         nums[i] = input;
     }
 
     bool reverse;
-    printf("Come vuoi ordinare l'array?\n0. Ordine crescente\n1. Ordine decrescente\n");
+    printf("How do you want to sort the list?\n0. Increment order\n1. Decrement order\n");
     scanf("%d", &reverse);
     fflush(stdout);
     
@@ -42,12 +44,12 @@ void bubblesort(int arr[], int n, bool reverse) {
     int i, j; 
     for (i = 0; i < n-1; i++)   
         for (j = 0; j < n-i-1; j++)
-            // Spiego:
-            // Se l'elemento j dell'array è maggiore dell'elemento j+1
-            // Allora uscirà 1, altrimenti 0
-            // Lo swap avviene solo quando il risultato dentro l'if è diverso da zero
-            // Quindi, se è maggiore il risultato sarà 0 e non viene eseguita l'istruzione
-            // Ma se è minore allora avviene lo swap
+            // Let me explain:
+            // if the `j` element is greater than the `j+1`
+            // then the return value'll be 1, otherwise 0
+            // the swap happens only when the result inside the if is but a zero
+            // so, if the result is bigger than 0 the istruction will not be executed
+            // but if it's smaller than the swap happens
             if ((arr[j] > arr[j+1]) - reverse)
                swap(&arr[j], &arr[j+1]);
 }
