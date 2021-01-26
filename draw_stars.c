@@ -3,7 +3,7 @@
 // Given `n` and `m`, draw a figure chosen by the user
 
 typedef enum {false, true} bool;
-typedef enum {rect, triangle, arrow, comp_triangle, pyramid} draw;
+typedef enum {rect, triangle, arrow, comp_triangle, pyramid, rhombus} draw;
 
 // |-------------------------------------------------------------|
 // |                    Declaring Functions                      |
@@ -14,11 +14,12 @@ void draw_triangle(int n);
 void draw_arrow(int n);
 void draw_complementary_triangle(int n);
 void draw_pyramid(int n);
+void draw_rhombus(int n);
 
 int main() {
     int n, m, choice;
 
-    printf("Choose your drawning.\n0. Rect\n1. Triangle\n2. Arrow\n3. Complementary triangle\n4. Pyramid\n");
+    printf("Choose your drawning.\n0. Rect\n1. Triangle\n2. Arrow\n3. Complementary triangle\n4. Pyramid\n5. Rhombus\n");
     scanf("%d", &choice);
     fflush(stdout);
 
@@ -44,6 +45,9 @@ int main() {
             break;
         case pyramid:
             draw_pyramid(n);
+            break;
+        case rhombus:
+            draw_rhombus(n);
             break;
     }
 
@@ -97,6 +101,19 @@ void draw_pyramid(int n) {
         int spaces = (n - i) / 2;  // how much spaces has to be left before and after the stars
         print_repetition("  ", spaces, false);
         print_repetition("* ", i, false);
+        print_repetition("  ", spaces, true);
+    }
+}
+
+void draw_rhombus(int n) {
+    int m_s = (n + 1) / 2;  // pre-computing m_s (max_star)
+    int m_s_two = m_s * 2;  // and m_s_two (max_star_times_two)
+    for (int i=1; i<=n; i+=2) {  // the base to draw something pyramid related
+        int s = i < m_s ? i : m_s_two - i;  // calculating how many stars to print
+        // the same as a pyramid but with the amount of stars (`s`) and with `i`
+        int spaces = (n - s) / 2;
+        print_repetition("  ", spaces, false);
+        print_repetition("* ", s, false);
         print_repetition("  ", spaces, true);
     }
 }
